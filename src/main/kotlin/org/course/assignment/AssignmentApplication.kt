@@ -22,39 +22,6 @@ import java.util.*
 @EnableMongoRepositories(basePackages = ["org.course.assignment"])
 class AssignmentApplication {
 
-//    @Autowired
-//    lateinit var productRepository: ProductRepository
-
-//    companion object{
-//        private val logger = LoggerFactory.getLogger(AssignmentApplication ::class.java)
-//        private const val FILE_PATH = "products.json"
-//    }
-
-//    @Bean
-//    fun productReader() = CommandLineRunner {
-//        val objectMapper = jacksonObjectMapper()
-//        val file = try {
-//            ResourceUtils.getFile("classpath:products.json")
-//        } catch (e: Exception) {
-//            logger.error("cannot find a file")
-//            throw e
-//        }
-//
-//        print(file)
-//
-//            val products: List<Product> = try {
-//                objectMapper.readValue(file)
-//            } catch (e: Exception) {
-//                logger.error("'$FILE_PATH' holds invalid data")
-//                throw IllegalStateException("'$FILE_PATH' file must be valid")
-//            }
-//
-//        products.forEach {
-//            println(it)
-//     //      productRepository.findById(it.id) ?: productRepository.save(it)
-//        }
-//    }
-
     companion object{
         private val logger = LoggerFactory.getLogger(AssignmentApplication ::class.java)
         private const val FILE_PATH = "products.json"

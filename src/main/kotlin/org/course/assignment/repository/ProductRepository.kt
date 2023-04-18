@@ -8,7 +8,7 @@ import java.util.*
 
 @Repository
 interface ProductRepository: MongoRepository<Product, UUID> {
-    fun findByImageUrl(image: String): Product?
+    fun findByImage(image: String): Product?
    override fun findById(id: UUID): Optional<Product>
     fun save(product: Product): Product
     override fun findAll(): List<Product>

@@ -5,6 +5,8 @@ import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
 import org.course.assignment.repository.ProductRepository
 import org.assertj.core.api.Assertions.assertThat
+import org.course.assignment.model.Item
+import org.course.assignment.repository.OrderRepository
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,7 +21,8 @@ import java.util.*
 @AutoConfigureWebTestClient
 class AssignmentApplicationTests @Autowired constructor(
         //private val repository: ProductRepository = mockk()
-         val repository: ProductRepository
+         val repository: ProductRepository,
+        val orderRepository: OrderRepository
 ) {
     @Test
     fun `should return all products`(){
@@ -43,6 +46,18 @@ class AssignmentApplicationTests @Autowired constructor(
             assert(value = true)
             assertThat("$result").isEqualTo("Optional[Product(id=798bfd69-ab23-4d0e-9766-bb2f5c4c7d05, name=bread, imageUrl=/bread.jpg, price=5.99, quantity=5)]")
         }
+    }
+
+    @Test
+    fun `should return calculated bill`()
+    {
+        val uid: UUID = UUID.fromString("798bfd69-ab23-4d0e-9766-bb2f5c4c7d05")
+        val items: List<Item> = listOf(Item(id = uid, quantity = 10)        )
+        val result = orderRepository.getCalculateBill(items)
+        println(result)
+        assertThat(result).isEqualTo("1234")
+
+
     }
 
 

@@ -8,10 +8,14 @@ import java.util.*
 
 @Component
 class ProductService(private val repository: ProductRepository) {
-    fun getProductById(id: UUID): Any? {
-        return repository.findById(id)
+    fun getProductById(id: UUID): Product? {
+        return repository.findByIdOrNull(id)
     }
     fun getAllProduct(): List<Product>{
         return repository.findAll()
+    }
+    fun uQuantity(product: Product, qty: Int) {
+        val newProduct = product.copy(quantity = product.quantity - qty)
+        repository.save(newProduct)
     }
 }

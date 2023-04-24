@@ -9,9 +9,11 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface ProductRepository: MongoRepository<Product, UUID> {
+interface ProductRepository : MongoRepository<Product, UUID> {
     fun findByImageUrl(image: String): Product?
-   //override fun findById(id: UUID): Optional<Product>
+
+    //override fun findById(id: UUID): Optional<Product>
     fun save(product: Product): Product
-   override fun findAll(): List<Product>
+    override fun findAll(): List<Product>
+
 }

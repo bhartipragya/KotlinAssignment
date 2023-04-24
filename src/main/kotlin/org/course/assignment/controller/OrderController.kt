@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController
 class OrderController(val orderService: OrderService) {
     @PostMapping
     fun getOrder(
-            @RequestBody items: List<Item>
+            @RequestBody items: Items
     ): Bill? {
-        return orderService.calculateBill(items)
+        return orderService.calculateBill(items.items)
     }
 }

@@ -25,13 +25,14 @@ class ProductController(val productService: ProductService) {
     @GetMapping(params = ["id"], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun fetchOneProduct(
             @RequestParam id: UUID
-    ): Any? {
-        try {
-            return productService.getProductById(id)
-        } catch (e: Exception) {
-            throw  ResponseStatusException (HttpStatus.NOT_FOUND, "$id not found");
-        }
-    }
+    ): Product =
+            productService.getProductById(id) ?: throw UnknownProductIdException()
+
+
+//} catch (e: Exception) {
+//            throw  ResponseStatusException (HttpStatus.NOT_FOUND, "$id not found");
+//        }
+//    }
 
 
 

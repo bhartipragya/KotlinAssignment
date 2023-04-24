@@ -8,14 +8,18 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 class ExceptionHandlerController: ResponseEntityExceptionHandler() {
-//    @ExceptionHandler(value= [UnknownProductIdException::class])
-//    fun handleUnknownProductIdException(e: UnknownProductIdException) = ResponseEntity
-//    .status(HttpStatus.NOT_FOUND).body(e.message)
-//
-//
-//    @ExceptionHandler(value = [InvalidQuantityException::class])
-//    fun handleInvalidQuantityException(e: InvalidQuantityException) = ResponseEntity
-//            .status(HttpStatus.BAD_REQUEST).body(e.message)
+    @ExceptionHandler(value= [UnknownProductIdException::class])
+    fun handleUnknownProductIdException(e: UnknownProductIdException) = ResponseEntity
+    .status(HttpStatus.NOT_FOUND).body(e.message)
+
+
+    @ExceptionHandler(value = [InvalidQuantityException::class])
+    fun handleInvalidQuantityException(e: InvalidQuantityException) = ResponseEntity
+            .status(HttpStatus.BAD_REQUEST).body(e.message)
 
 
 }
+
+class UnknownProductIdException: Exception("Product Not Found")
+
+class InvalidQuantityException: Exception("Invalid quantity found")
